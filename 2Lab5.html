@@ -1,0 +1,48 @@
+<html>
+ <head>
+ <title></title>
+ <script src="jquery-3.6.0.min.js">
+</script>
+</head>
+<body>
+<form>
+
+<div class="drag">
+<div id="adel">
+<img src="0278f2d13940d32934591b6d035a1125.jpg" height="300" width="350" ></img>
+</div>
+</div>
+</form>
+<script>
+	let adel = document.getElementById('adel'); 
+	adel.onmousedown = function(e) { 
+	 let coords = getCoords(adel); 
+	let shiftX = e.pageX - coords.left; 
+	let shiftY = e.pageY - coords.top; 
+	adel.style.position = 'absolute'; 
+	document.body.appendChild(adel); 
+	moveAt(e); 
+	adel.style.zIndex = 1000;
+	function moveAt(e) { 
+	adel.style.left = e.pageX - shiftX + 'px'; 
+	adel.style.top = e.pageY - shiftY + 'px'; } 
+	document.onmousemove = function(e) { 
+	 moveAt(e); 
+	}; 
+	adel.onmouseup = function() { 
+	document.onmousemove = null; 
+	adel.onmouseup = null; 
+	}; 
+	} 
+	adel.ondragstart = function() { return false; }; 
+	function getCoords(elem) { 
+	let box = elem.getBoundingClientRect(); 
+	return { 
+	top: box.top + pageYOffset, 
+	left: box.left + pageXOffset 
+  }; 
+ } 
+</script>
+</p>
+</body>
+</html> 
